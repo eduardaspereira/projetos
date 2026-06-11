@@ -14,18 +14,20 @@
             --text-muted: #64748b;
             --border-color: #1e293b;
             --scanline-opacity: 0.15;
-            --transition-speed: 0.4s;
+            --transition-speed: 0.5s;
+            --radius: 16px;
         }
 
+        /* Ambiente Modo Claro: Cores Vibrantes e Elétricas */
         [data-theme="light"] {
-            --bg-color: #f1f5f9;
+            --bg-color: #f0fdf4; /* Fundo menta ultra-limpo */
             --panel-bg: #ffffff;
-            --accent-cyan: #0f766e;
-            --accent-green: #16a34a;
+            --accent-cyan: #06b6d4; /* Ciano elétrico brilhante */
+            --accent-green: #22c55e; /* Verde néon vibrante para modo claro */
             --text-main: #0f172a;
             --text-muted: #475569;
-            --border-color: #cbd5e1;
-            --scanline-opacity: 0.03;
+            --border-color: #bbf7d0; /* Bordas suaves mas visíveis */
+            --scanline-opacity: 0.04;
         }
 
         * {
@@ -33,10 +35,11 @@
             margin: 0;
             padding: 0;
             font-family: 'Courier New', Courier, monospace;
-            transition: background-color var(--transition-speed) ease, 
-                        border-color var(--transition-speed) ease, 
-                        color var(--transition-speed) ease, 
-                        box-shadow var(--transition-speed) ease;
+            transition: background-color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                        border-color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                        color var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1), 
+                        box-shadow var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         body {
@@ -44,7 +47,7 @@
             color: var(--text-main);
             overflow-x: hidden;
             padding: 20px;
-            padding-top: 80px;
+            padding-top: 100px;
         }
 
         /* Scanline CRT Effect */
@@ -61,46 +64,73 @@
             opacity: var(--scanline-opacity);
         }
 
-        /* Navbar & Menu Fixed */
+        /* Navbar & Menu Animado */
         nav {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 60px;
+            top: 15px; left: 15px; right: 15px;
+            height: 65px;
             background: var(--panel-bg);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
+            padding: 0 25px;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
         }
 
         .nav-logo {
             color: var(--accent-cyan);
             font-weight: bold;
             font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 20px;
         }
 
         .menu-tabs {
             display: flex;
-            gap: 5px;
+            gap: 8px;
+            background: rgba(0,0,0,0.03);
+            padding: 4px;
+            border-radius: 30px;
         }
 
         .tab-btn {
             background: transparent;
-            border: 1px solid transparent;
+            border: none;
             color: var(--text-muted);
-            padding: 6px 15px;
+            padding: 8px 18px;
             cursor: pointer;
             font-size: 0.9rem;
             text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* Efeito de Swipe de Cor nos Botões do Menu */
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), transparent);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
         }
 
         .tab-btn:hover {
@@ -108,31 +138,39 @@
         }
 
         .tab-btn.active {
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            background: rgba(0, 240, 255, 0.05);
+            color: #ffffff !important;
+            background: var(--accent-cyan);
+            box-shadow: 0 4px 12px rgba(0, 240, 255, 0.3);
         }
 
-        /* Smooth Theme Switcher */
+        [data-theme="light"] .tab-btn.active {
+            color: #ffffff !important;
+            background: var(--accent-green);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Alternador de Tema */
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 36px;
-            height: 36px;
-            border-radius: 4px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.1rem;
         }
 
         .theme-toggle:hover {
+            transform: rotate(360deg);
             border-color: var(--accent-green);
-            color: var(--accent-green);
+            background: rgba(57, 255, 20, 0.1);
         }
 
-        /* Layout Structure */
+        /* Estrutura de Layout e Animações de Swipe Interno */
         main {
             max-width: 950px;
             margin: 0 auto;
@@ -140,26 +178,28 @@
 
         .content-section {
             display: none;
-            animation: fadeIn 0.5s ease-in-out forwards;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: transform var(--transition-speed) cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity var(--transition-speed) ease-in-out;
         }
 
+        /* Animação Swipe lateral quando ativa */
         .content-section.active {
             display: block;
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Elements & Panels */
+        /* Painéis com Cantos Arredondados Modernos */
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             padding: 30px;
             margin-bottom: 30px;
+            border-radius: var(--radius);
             position: relative;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .panel-header {
@@ -167,19 +207,24 @@
             text-transform: uppercase;
             font-size: 1.3rem;
             margin-bottom: 20px;
-            border-bottom: 1px dashed var(--border-color);
+            border-bottom: 2px dashed var(--border-color);
             padding-bottom: 10px;
             display: flex;
             align-items: center;
         }
 
-        .panel-header::before {
-            content: "// ";
+        /* Palavras com Efeito Deslizante/Swipe Lateral Subtil ao Passar o Rato */
+        .swipe-text-trigger {
+            display: inline-block;
+            position: relative;
+        }
+        .swipe-text-trigger:hover {
             color: var(--accent-green);
+            transform: translateX(6px);
         }
 
         h1 {
-            font-size: 2.6rem;
+            font-size: 2.8rem;
             color: var(--accent-cyan);
             text-transform: uppercase;
             margin-bottom: 5px;
@@ -193,17 +238,21 @@
         }
 
         .terminal {
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid var(--accent-green);
-            padding: 15px;
+            background: rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-green);
+            padding: 18px;
             font-size: 0.9rem;
             margin-top: 15px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        [data-theme="dark"] .terminal {
+            background: rgba(0, 0, 0, 0.4);
         }
 
-        /* Pipeline Visual Layout */
+        /* Pipeline Horizontal/Vertical Core */
         .pipeline-container {
             position: relative;
-            border-left: 2px dashed var(--accent-cyan);
+            border-left: 3px dashed var(--accent-cyan);
             margin-left: 15px;
             padding-left: 30px;
         }
@@ -212,80 +261,78 @@
             position: relative;
             margin-bottom: 35px;
             background: var(--panel-bg);
-            padding: 20px;
+            padding: 25px;
             border: 1px solid var(--border-color);
+            border-radius: var(--radius);
         }
 
         .pipeline-node:hover {
             border-color: var(--accent-cyan);
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 15px 35px rgba(0, 240, 255, 0.1);
         }
 
         .pipeline-node::before {
             content: "";
             position: absolute;
-            left: -38px;
-            top: 24px;
-            width: 14px;
-            height: 14px;
+            left: -39px;
+            top: 28px;
+            width: 16px;
+            height: 16px;
             background: var(--bg-color);
-            border: 2px solid var(--accent-green);
+            border: 3px solid var(--accent-green);
             border-radius: 50%;
+            z-index: 10;
         }
 
-        .node-meta {
-            font-size: 0.8rem;
-            color: var(--accent-cyan);
-            margin-bottom: 5px;
-        }
-
-        .node-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Grid Framework */
+        /* Estrutura de Grelha e Efeitos de Zoom/Swipe dos Cartões */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            gap: 25px;
         }
 
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            padding: 20px;
+            border-radius: var(--radius);
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.02);
         }
 
         .card:hover {
             border-color: var(--accent-green);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 30px rgba(57, 255, 20, 0.15);
         }
 
+        /* Tags Estilizadas */
         .tag {
             display: inline-block;
-            background: rgba(0, 240, 255, 0.06);
+            background: rgba(0, 240, 255, 0.08);
             color: var(--accent-cyan);
-            padding: 2px 8px;
+            padding: 4px 10px;
             font-size: 0.75rem;
             margin-top: 8px;
-            margin-right: 4px;
-            border: 1px solid rgba(0, 240, 255, 0.15);
+            margin-right: 5px;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            font-weight: bold;
         }
 
         .list-item {
-            margin-bottom: 10px;
-            padding-left: 15px;
+            margin-bottom: 12px;
+            padding-left: 20px;
             position: relative;
             font-size: 0.95rem;
             color: var(--text-muted);
         }
 
         .list-item::before {
-            content: "•";
+            content: "➔";
             position: absolute;
             left: 0;
             color: var(--accent-green);
@@ -293,8 +340,8 @@
 
         footer {
             text-align: center;
-            margin-top: 60px;
-            padding: 20px;
+            margin-top: 80px;
+            padding: 30px;
             font-size: 0.8rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
@@ -303,10 +350,11 @@
         a {
             color: var(--accent-cyan);
             text-decoration: none;
+            font-weight: bold;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: var(--accent-green);
         }
     </style>
 </head>
@@ -320,7 +368,7 @@
                 <button class="tab-btn" onclick="switchTab('experience')">Experience</button>
                 <button class="tab-btn" onclick="switchTab('projects')">Projects</button>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()" title="Toggle UI Environment">⚡</button>
+            <button class="theme-toggle" onclick="toggleTheme()" title="Change Environment">⚡</button>
         </div>
     </nav>
 
@@ -328,14 +376,14 @@
         
         <section id="about" class="content-section active">
             <div class="panel">
-                <h1>Eduarda Pereira</h1>
-                <div class="subtitle">MSc Student in Informatics Engineering // Distributed Systems & AI Architectures</div>
+                <h1 class="swipe-text-trigger">Eduarda Pereira</h1>
+                <div class="subtitle">MSc Student in Informatics Engineering // Distributed Systems & AI Architectures [cite: 12, 18]</div>
                 
                 <div class="terminal">
                     <p style="color: var(--accent-green); font-weight: bold;">&gt; cat profile.json</p>
-                    <p style="color: var(--text-muted); margin-top: 8px; line-height: 1.6;">
-                        MSc Student focusing on Distributed Systems, Artificial Intelligence, and Network Optimization. 
-                        Passionate about constructing robust automation, building complex end-to-end processing pipelines, 
+                    <p style="color: var(--text-main); margin-top: 8px; line-height: 1.6;">
+                        MSc Student focusing on Distributed Systems, Artificial Intelligence, and Network Optimization[cite: 12]. 
+                        Passionate about constructing robust automation, building complex end-to-end processing pipelines[cite: 14, 55, 78, 88], 
                         and filtering out system structural inefficiencies.
                     </p>
                 </div>
@@ -343,24 +391,24 @@
 
             <div class="grid">
                 <div class="panel" style="margin-bottom:0;">
-                    <div class="panel-header">Academic Matrix</div>
-                    <div style="margin-bottom: 15px;">
-                        <strong style="color: var(--accent-cyan);">Universidade do Minho (Braga)</strong>
-                        <p style="font-size:0.85rem; color:var(--text-muted);">MSc in Informatics Engineering (2025 - Present)</p>
+                    <div class="panel-header">Academic Matrix [cite: 16]</div>
+                    <div style="margin-bottom: 20px;">
+                        <strong style="color: var(--accent-cyan); font-size: 1.1rem;">Universidade do Minho (Braga) [cite: 17]</strong>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-top: 4px;">MSc in Informatics Engineering (2025 - Present) [cite: 18]</p>
                     </div>
                     <div>
-                        <strong style="color: var(--accent-cyan);">Universidade do Algarve (Faro)</strong>
-                        <p style="font-size:0.85rem; color:var(--text-muted);">Degree in Computer Science (2022 - 2025)</p>
+                        <strong style="color: var(--accent-cyan); font-size: 1.1rem;">Universidade do Algarve (Faro) [cite: 22]</strong>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin-top: 4px;">Degree in Computer Science (2022 - 2025) [cite: 23]</p>
                     </div>
                 </div>
 
                 <div class="panel" style="margin-bottom:0;">
-                    <div class="panel-header">Core Capabilities</div>
-                    <div>
-                        <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">NLP</span>
-                        <span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">Vagrant</span>
-                        <span class="tag">GNU Bash</span><span class="tag">Java</span><span class="tag">SQL</span>
-                        <span class="tag">C/C++</span><span class="tag">Git</span><span class="tag">Agile/Scrum</span>
+                    <div class="panel-header">Core Capabilities [cite: 32]</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                        <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">NLP</span> [cite: 34, 35]
+                        <span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">Vagrant</span> [cite: 39, 40, 76]
+                        <span class="tag">GNU Bash</span><span class="tag">Java</span><span class="tag">SQL</span> [cite: 41, 49, 62]
+                        <span class="tag">C/C++</span><span class="tag">Git</span><span class="tag">Agile/Scrum</span> [cite: 45, 47, 62]
                     </div>
                 </div>
             </div>
@@ -368,24 +416,24 @@
 
         <section id="experience" class="content-section">
             <div class="panel">
-                <div class="panel-header">Execution Pipeline (Experience)</div>
+                <div class="panel-header">Execution Pipeline [cite: 106]</div>
                 <div class="pipeline-container">
                     
                     <div class="pipeline-node">
-                        <div class="node-meta">JUN 2026 - JUL 2026 // NODE_02</div>
-                        <div class="node-title">INESC TEC — Research Intern</div>
+                        <div class="node-meta">JUN 2026 - JUL 2026 // NODE_02 [cite: 113]</div>
+                        <div class="node-title swipe-text-trigger">INESC TEC — Research Intern [cite: 113, 114]</div>
                         <p style="color: var(--text-muted); font-size: 0.95rem;">
-                            Focused on Multimodal Streaming & Network Perception systems.
+                            Focused on Multimodal Streaming & Network Perception systems[cite: 114].
                         </p>
-                        <span class="tag">Multimodal Streaming</span> <span class="tag">Network Perception</span>
+                        <span class="tag">Multimodal Streaming</span> <span class="tag">Network Perception</span> [cite: 114]
                     </div>
 
                     <div class="pipeline-node">
-                        <div class="node-meta">AUG 2025 - SEP 2025 // NODE_01</div>
-                        <div class="node-title">SurfAventura — IT & Operations / Staff</div>
-                        <div class="list-item">Led technical evaluation and deployment of a SaaS management platform to optimize workflow and analytics data integrity.</div>
-                        <div class="list-item">Designed and delivered training for staff ensuring 100% system adoption.</div>
-                        <span class="tag">SaaS Deployment</span> <span class="tag">Data Architecture</span>
+                        <div class="node-meta">AUG 2025 - SEP 2025 // NODE_01 [cite: 107]</div>
+                        <div class="node-title swipe-text-trigger">SurfAventura — IT & Operations / Staff [cite: 107, 108, 110]</div>
+                        <div class="list-item">Led technical evaluation and deployment of a SaaS management platform to optimize workflow and analytics data integrity[cite: 111].</div>
+                        <div class="list-item">Designed and delivered training for staff ensuring 100% system adoption[cite: 111].</div>
+                        <span class="tag">SaaS Deployment</span> <span class="tag">Data Architecture</span> [cite: 111, 112]
                     </div>
 
                 </div>
@@ -393,76 +441,76 @@
         </section>
 
         <section id="projects" class="content-section">
-            <div class="panel" style="margin-bottom: 20px;">
-                <div class="panel-header">System Clusters & Artifacts</div>
-                <p style="color: var(--text-muted); font-size:0.9rem;">Selected engineering developments executing advanced data extraction, virtualization, and learning algorithms.</p>
+            <div class="panel" style="margin-bottom: 25px;">
+                <div class="panel-header">System Clusters & Artifacts [cite: 50]</div>
+                <p style="color: var(--text-muted); font-size:0.95rem;">Engineering developments executing advanced data extraction, virtualization, and learning algorithms[cite: 54, 55, 70, 88].</p>
             </div>
 
             <div class="grid">
                 
                 <div class="card">
                     <div>
-                        <div class="node-meta">2026</div>
-                        <h3 style="color: var(--accent-cyan);">DriftSense-PM</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Autonomous edge predictive maintenance system detecting anomalies/concept drift directly on hardware (Arduino Portenta C33 / Raspberry Pi 5).</p>
+                        <div class="node-meta">2026 [cite: 68]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">DriftSense-PM</h3> [cite: 68]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">Autonomous edge predictive maintenance system detecting mechanical anomalies directly on hardware (Arduino Portenta C33 / Raspberry Pi 5)[cite: 70, 71, 72].</p>
                     </div>
                     <div>
-                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span><span class="tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="node-meta">2026</div>
-                        <h3 style="color: var(--accent-cyan);">RipeRadar</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">End-to-end IoT fruit ripening framework incorporating visual classification, BLE data orchestration, and cloud MQTT telemetry routing.</p>
-                    </div>
-                    <div>
-                        <span class="tag">IoT</span><span class="tag">Embedded ML</span><span class="tag">MQTT</span>
+                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span><span class="tag">Docker</span> [cite: 69, 72, 76]
                     </div>
                 </div>
 
                 <div class="card">
                     <div>
-                        <div class="node-meta">2026</div>
-                        <h3 style="color: var(--accent-cyan);">DRE Knowledge Graph</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">High-performance pipeline mapping compressed Portuguese Electronic Republic Diary data into dynamic OWL/RDF graphs with Flask REST API.</p>
+                        <div class="node-meta">2026 [cite: 77]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">RipeRadar</h3> [cite: 77]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">End-to-end IoT fruit ripening framework incorporating visual classification, BLE data orchestration, and cloud MQTT telemetry routing[cite: 79, 80, 81].</p>
                     </div>
                     <div>
-                        <span class="tag">Semantic Web</span><span class="tag">Ontologies</span><span class="tag">Flask</span>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="node-meta">2026</div>
-                        <h3 style="color: var(--accent-cyan);">Road Traffic System (RTMS)</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">INMF software architecture featuring Q-Learning traffic control and cryptographic hardening (Fernet symmetric encryption).</p>
-                    </div>
-                    <div>
-                        <span class="tag">Reinforcement Learning</span><span class="tag">SNMP Security</span>
+                        <span class="tag">IoT</span><span class="tag">Embedded ML</span><span class="tag">MQTT</span> [cite: 78]
                     </div>
                 </div>
 
                 <div class="card">
                     <div>
-                        <div class="node-meta">2026</div>
-                        <h3 style="color: var(--accent-cyan);">Semantic Search & QA</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Hybrid Retriever system leveraging Siamese BERT-networks combined with an abstractive/extractive generative QA engine.</p>
+                        <div class="node-meta">2026 [cite: 85]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">DRE Graph</h3> [cite: 85]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">High-performance pipeline mapping compressed Portuguese Electronic Republic Diary data into dynamic OWL/RDF graphs[cite: 87, 88, 89].</p>
                     </div>
                     <div>
-                        <span class="tag">NLP</span><span class="tag">Sentence-BERT</span><span class="tag">LLMs</span>
+                        <span class="tag">Semantic Web</span><span class="tag">Ontologies</span><span class="tag">Flask</span> [cite: 86]
                     </div>
                 </div>
 
                 <div class="card">
                     <div>
-                        <div class="node-meta">2025</div>
-                        <h3 style="color: var(--accent-cyan);">QoS Enforcement via VNFs</h3>
-                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">Modular QoS virtualization architecture using Virtual Network Functions for traffic classification, policing, and service chaining.</p>
+                        <div class="node-meta">2026 [cite: 93]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">Traffic RTMS</h3> [cite: 93]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">INMF software architecture featuring Q-Learning traffic control and cryptographic hardening mechanisms[cite: 95, 97, 98].</p>
                     </div>
                     <div>
-                        <span class="tag">NFV</span><span class="tag">Networking</span><span class="tag">Distributed Systems</span>
+                        <span class="tag">Reinforcement Learning</span><span class="tag">SNMP Security</span> [cite: 94, 98]
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="node-meta">2026 [cite: 57]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">Semantic QA</h3> [cite: 57]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">Hybrid Retriever system leveraging Siamese BERT-networks combined with generative QA LLM modules[cite: 58, 60].</p>
+                    </div>
+                    <div>
+                        <span class="tag">NLP</span><span class="tag">Sentence-BERT</span><span class="tag">LLMs</span> [cite: 57, 58, 60]
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="node-meta">2025 [cite: 54]</div>
+                        <h3 style="color: var(--accent-cyan);" class="swipe-text-trigger">QoS VNFs</h3> [cite: 54]
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; line-height: 1.4;">Modular QoS virtualization architecture using Virtual Network Functions for access control and traffic classification[cite: 55].</p>
+                    </div>
+                    <div>
+                        <span class="tag">NFV</span><span class="tag">Networking</span><span class="tag">Distributed</span> [cite: 54]
                     </div>
                 </div>
 
@@ -472,20 +520,49 @@
     </main>
 
     <footer>
-        <p>SYSTEM ACCESS TERMINATED // Connect via <a href="#">LinkedIn</a> or <a href="#">GitHub</a></p>
+        <p>SYSTEM ACCESS TERMINATED // Connect via <a href="#">LinkedIn</a> or <a href="#">GitHub</a> [cite: 8, 9]</p>
     </footer>
 
     <script>
         function switchTab(tabId) {
-            // Remove active classes from all buttons and sections
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.content-section').forEach(sec => sec.classList.remove('active'));
+            const sections = document.querySelectorAll('.content-section');
+            const buttons = document.querySelectorAll('.tab-btn');
             
-            // Add active class to selected tab elements
-            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.textContent.toLowerCase() === tabId);
+            // Remover estado ativo dos botões
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Ativar botão correto com base no texto
+            const activeBtn = Array.from(buttons).find(btn => btn.textContent.toLowerCase() === tabId);
             if(activeBtn) activeBtn.classList.add('active');
             
-            document.getElementById(tabId).classList.add('active');
+            // Executar animação de saída por deslizamento (Swipe out)
+            sections.forEach(sec => {
+                if (sec.classList.contains('active')) {
+                    sec.style.opacity = '0';
+                    sec.style.transform = 'translateX(-30px)';
+                    setTimeout(() => {
+                        sec.classList.remove('active');
+                        triggerActivation(tabId);
+                    }, 250); // Aguarda o fecho da animação
+                }
+            });
+
+            // Se nenhuma secção estava ativa previamente (carregamento inicial)
+            if (!Array.from(sections).some(s => s.classList.contains('active'))) {
+                triggerActivation(tabId);
+            }
+        }
+
+        function triggerActivation(tabId) {
+            const targetSection = document.getElementById(tabId);
+            targetSection.style.display = 'block';
+            
+            // Pequeno timeout para garantir que o display block foi processado antes do Swipe in
+            setTimeout(() => {
+                targetSection.classList.add('active');
+                targetSection.style.opacity = '1';
+                targetSection.style.transform = 'translateX(0)';
+            }, 50);
         }
 
         function toggleTheme() {
