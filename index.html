@@ -6,36 +6,32 @@
     <title>Eduarda Pereira | Portfolio</title>
     <style>
         :root {
-            --bg-color: #06070a;
-            --panel-bg: #0c0e17;
-            --accent-cyan: #00f0ff;
-            --accent-green: #39ff14;
-            --text-main: #e2e8f0;
-            --text-muted: #64748b;
-            --border-color: #1e293b;
-            --radius: 20px;
-            --transition-speed: 0.4s;
+            --bg-color: #0c1016; /* Deep dark void space */
+            --panel-bg: #161b22;
+            --accent-cyan: #27b7a5; /* Vibrant SOHub teal/cyan */
+            --accent-green: #39ff14; /* Shocking neon green */
+            --text-main: #f0f6f8;
+            --text-muted: #8b949e;
+            --border-color: #21262d;
+            --radius: 24px;
+            --transition-speed: 0.5s;
         }
 
         [data-theme="light"] {
-            --bg-color: #f0fdf4;
+            --bg-color: #f4fbf9; /* Super bright fresh mint mint */
             --panel-bg: #ffffff;
-            --accent-cyan: #06b6d4;
-            --accent-green: #22c55e;
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border-color: #bbf7d0;
+            --accent-cyan: #0ea5e9; /* Blazing electric cyan */
+            --accent-green: #10b981; /* High-contrast bright green */
+            --text-main: #0c1016;
+            --text-muted: #64748b;
+            --border-color: #cbd5e1;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            transition: background-color var(--transition-speed) ease, 
-                        border-color var(--transition-speed) ease, 
-                        color var(--transition-speed) ease, 
-                        box-shadow var(--transition-speed) ease;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         html {
@@ -46,149 +42,179 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            padding: 20px;
-            padding-top: 100px;
+            padding: 24px;
+            padding-top: 120px;
+            transition: background-color var(--transition-speed) cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Menu de Navegação Fixo e Arredondado */
+        /* Fixed Premium Floating Navigation */
         nav {
             position: fixed;
             top: 20px; left: 20px; right: 20px;
-            height: 70px;
+            height: 75px;
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 30px;
+            padding: 0 35px;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-speed) ease;
         }
 
         .nav-logo {
             color: var(--accent-cyan);
             font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: letter-spacing 0.4s ease;
         }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        .nav-logo:hover {
+            letter-spacing: 4px; /* Dynamic spacing on hover */
         }
 
         .menu-links {
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.04);
+            padding: 6px;
+            border-radius: 40px;
+        }
+        [data-theme="light"] .menu-links {
+            background: rgba(0, 240, 255, 0.08); /* Bright accent background on light menu */
         }
 
         .menu-links a {
-            color: var(--text-muted);
+            color: var(--text-main);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            padding: 8px 16px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 10px 22px;
             border-radius: 30px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
 
         .menu-links a:hover {
-            color: var(--accent-cyan);
-            background: rgba(0, 240, 255, 0.05);
+            color: #ffffff;
+            background: var(--accent-cyan);
+            letter-spacing: 2px; /* Letter spacing expansion on links */
+        }
+
+        [data-theme="light"] .menu-links a:hover {
+            background: var(--accent-green); /* Ultra bright shift on light mode */
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
         }
 
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         .theme-toggle:hover {
-            transform: rotate(180deg) scale(1.1);
+            transform: rotate(360deg) scale(1.15);
             border-color: var(--accent-green);
         }
 
-        /* Content Container */
+        /* Container Blueprint */
         main {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         section {
-            margin-bottom: 80px;
-            scroll-margin-top: 110px;
+            margin-bottom: 120px;
+            scroll-margin-top: 130px;
         }
 
-        /* Efeito de Escrita Progressiva (Left to Right) */
-        .typing-title {
-            font-size: 3.2rem;
-            font-weight: 800;
-            color: var(--accent-cyan);
-            white-space: nowrap;
+        /* Typewriter text running left to right */
+        .typing-container {
+            display: inline-block;
             overflow: hidden;
-            width: 0;
-            border-right: 3px solid var(--accent-green);
-            animation: typing 2.5s steps(30, end) forwards, blink 0.75s step-end infinite;
-            margin-bottom: 10px;
+            white-space: nowrap;
+            border-right: 4px solid var(--accent-green);
+            animation: typing 3s steps(30, end) forwards, blink 0.8s step-end infinite;
+        }
+
+        .typing-title {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--accent-cyan);
+            letter-spacing: -1px;
+            transition: letter-spacing 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .typing-title:hover {
+            letter-spacing: 6px; /* Title letter expansion */
         }
 
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
         }
-
         @keyframes blink {
             from, to { border-color: transparent }
-            50% { border-color: var(--accent-green); }
+            50% { border-color: var(--accent-green) }
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin-bottom: 30px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
         }
 
-        /* Painéis e Animação Flutuante Continua */
+        /* Fluid Floating Structural Panels */
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
-            padding: 35px;
+            padding: 45px;
             border-radius: var(--radius);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            animation: float-slow 6s ease-in-out infinite;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            animation: float-vertical 7s ease-in-out infinite;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .panel:hover {
+            border-color: var(--accent-cyan);
         }
 
-        @keyframes float-slow {
+        @keyframes float-vertical {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); } /* Fluid constant floating movement */
         }
 
-        .section-title {
-            color: var(--accent-cyan);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .section-header {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 40px;
+            transition: letter-spacing 0.4s ease;
+        }
+        .section-header:hover {
+            letter-spacing: 3px;
         }
 
-        /* Elementos que Aparecem Suavemente no Scroll */
+        /* Smooth Scroll-Driven Entry Reveal Engines */
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: opacity 0.8s ease out, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            transform: translateY(60px) scale(0.96);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), 
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .scroll-reveal.visible {
@@ -196,99 +222,84 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Grelha e Cartões com Efeito de Escalonamento (Hover Magnify) */
+        /* Grid Map and Magnify Scaling Cards */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 25px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
             cursor: pointer;
+            transform: scale(1);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease;
         }
 
-        /* Efeito de Crescimento ao Passar o Rato */
+        /* Magnify grow hover trigger */
         .card:hover {
-            transform: scale(1.07) translateY(-5px);
+            transform: scale(1.08) translateY(-5px); /* Massive smooth scale-up enlargement */
             border-color: var(--accent-green);
-            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.15);
-            z-index: 5;
+            box-shadow: 0 25px 50px rgba(39, 183, 165, 0.15);
         }
 
-        /* Estrutura da Linha de Experiência Simplificada */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            transition: letter-spacing 0.3s ease;
         }
-
-        .timeline-item {
-            background: var(--panel-bg);
-            border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: var(--radius);
-        }
-
-        .timeline-item:hover {
-            transform: scale(1.03);
-            border-color: var(--accent-cyan);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        .card:hover h3 {
+            letter-spacing: 2px; /* Card content letters space out on hover */
+            color: var(--accent-cyan);
         }
 
         .meta {
             font-size: 0.85rem;
             color: var(--accent-cyan);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .item-title {
-            font-size: 1.25rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
         }
 
         .tag {
             display: inline-block;
-            background: rgba(0, 240, 255, 0.08);
+            background: rgba(39, 183, 165, 0.08);
             color: var(--accent-cyan);
-            padding: 4px 12px;
+            padding: 5px 14px;
             font-size: 0.8rem;
-            margin-top: 10px;
+            margin-top: 12px;
             margin-right: 6px;
-            border-radius: 30px;
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            font-weight: 600;
+            border-radius: 40px;
+            border: 1px solid rgba(39, 183, 165, 0.15);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .card:hover .tag {
+            background: var(--accent-cyan);
+            color: #ffffff;
         }
 
-        .list-item {
-            margin-bottom: 10px;
-            padding-left: 18px;
-            position: relative;
+        .list-desc {
+            margin-top: 10px;
             font-size: 0.95rem;
             color: var(--text-muted);
-        }
-
-        .list-item::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent-green);
+            line-height: 1.5;
         }
 
         footer {
             text-align: center;
-            margin-top: 100px;
-            padding: 40px;
-            font-size: 0.9rem;
+            margin-top: 120px;
+            padding: 50px 20px;
+            font-size: 0.95rem;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
         }
@@ -296,14 +307,18 @@
         footer a {
             color: var(--accent-cyan);
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            transition: letter-spacing 0.3s ease;
+        }
+        footer a:hover {
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">EDUARDA.P</div>
+        <div class="nav-logo">Eduarda.P</div>
         <div class="nav-right">
             <div class="menu-links">
                 <a href="#about">About</a>
@@ -318,125 +333,140 @@
         
         <section id="about">
             <div class="panel">
-                <h1 class="typing-title">Eduarda Pereira</h1>
-                <div class="subtitle">MSc Student in Informatics Engineering</div>
+                <div class="typing-container">
+                    <h1 class="typing-title">Eduarda Pereira</h1>
+                </div>
+                <div class="subtitle">Computer Science Master's Student</div>
                 
-                <p style="color: var(--text-main); line-height: 1.7; font-size: 1.1rem;">
-                    MSc Student focusing on Distributed Systems, Artificial Intelligence, and Network Optimization. 
-                    Passionate about constructing robust automation, building complex end-to-end processing pipelines, 
-                    e desenvolvendo arquiteturas fluidas capazes de processar fluxos de dados complexos com a máxima eficiência.
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-main); font-weight: 400;">
+                    Currently pursuing an MSc in Informatics Engineering, centering depth on Distributed Systems, 
+                    Artificial Intelligence, and Network Optimization. Specialized in engineering high-performance automated data streams, 
+                    low-resource semantic search layouts, and real-time edge processing configurations[cite: 14, 15, 70].
                 </p>
 
-                <div style="margin-top: 30px; display: flex; flex-wrap: wrap; gap: 8px;">
+                <div style="margin-top: 35px; display: flex; flex-wrap: wrap; gap: 6px;">
                     <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">NLP</span>
                     <span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">Vagrant</span>
                     <span class="tag">GNU Bash</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">C/C++</span>
                 </div>
             </div>
 
-            <div class="grid style-grid" style="margin-top: 25px;">
+            <div class="grid" style="margin-top: 30px;">
                 <div class="card scroll-reveal">
-                    <div class="section-title" style="font-size: 1.3rem; margin-bottom: 10px;">Universidade do Minho</div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">Master's in Informatics Engineering<br>Braga (2025 - Present)</p>
+                    <div>
+                        <div class="meta">2025 - Present</div>
+                        <h3>Universidade do Minho</h3>
+                        <p class="list-desc">Master's in Informatics Engineering — Focused on Distributed AI, Applied IoT, and QoS Architectures[cite: 18, 19, 21].</p>
+                    </div>
                 </div>
                 <div class="card scroll-reveal">
-                    <div class="section-title" style="font-size: 1.3rem; margin-bottom: 10px;">Universidade do Algarve</div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">Degree in Computer Science<br>Faro (2022 - 2025)</p>
+                    <div>
+                        <div class="meta">2022 - 2025</div>
+                        <h3>Universidade do Algarve</h3>
+                        <p class="list-desc">Degree in Computer Science — Core algorithms, data architectures, and advanced operating systems[cite: 23, 24, 25].</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="experience">
-            <div class="section-title">Experience</div>
-            <div class="timeline">
+            <h2 class="section-header">Experience</h2>
+            <div class="grid">
                 
-                <div class="timeline-item scroll-reveal">
-                    <div class="meta">JUN 2026 - JUL 2026</div>
-                    <div class="item-title">INESC TEC — Research Intern</div>
-                    <p style="color: var(--text-muted); font-size: 0.95rem;">
-                        Focused on Multimodal Streaming & Network Perception systems.
-                    </p>
-                    <span class="tag">Multimodal Streaming</span> <span class="tag">Network Perception</span>
+                <div class="card scroll-reveal">
+                    <div>
+                        <div class="meta">Jun 2026 - Jul 2026</div>
+                        <h3>INESC TEC</h3>
+                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem;">Research Intern</p>
+                        <p class="list-desc">Engineered research infrastructure regarding Multimodal Streaming and Network Perception processing pipelines[cite: 114].</p>
+                    </div>
+                    <div>
+                        <span class="tag">Data Streaming</span>
+                    </div>
                 </div>
 
-                <div class="timeline-item scroll-reveal">
-                    <div class="meta">AUG 2025 - SEP 2025</div>
-                    <div class="item-title">SurfAventura — IT & Operations</div>
-                    <div class="list-item">Led technical evaluation and deployment of a SaaS management platform to optimize workflow and analytics data integrity.</div>
-                    <div class="list-item">Designed and delivered training for staff ensuring 100% system adoption.</div>
-                    <span class="tag">SaaS Deployment</span> <span class="tag">Data Architecture</span>
+                <div class="card scroll-reveal">
+                    <div>
+                        <div class="meta">Aug 2025 - Sep 2025</div>
+                        <h3>SurfAventura</h3>
+                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem;">IT & Operations Manager</p>
+                        <p class="list-desc">Led technical design, pipeline architecture alignment, and full deployment operations of an analytics SaaS platform[cite: 111, 112].</p>
+                    </div>
+                    <div>
+                        <span class="tag">SaaS Operations</span>
+                    </div>
                 </div>
 
             </div>
         </section>
 
         <section id="projects">
-            <div class="section-title">Projects & Systems</div>
+            <h2 class="section-header">Selected Work & Systems</h2>
             <div class="grid">
                 
                 <div class="card scroll-reveal">
                     <div>
                         <div class="meta">2026</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">DriftSense-PM</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">Autonomous edge predictive maintenance system detecting mechanical anomalies directly on hardware (Arduino Portenta C33 / Raspberry Pi 5).</p>
+                        <h3>DriftSense-PM</h3>
+                        <p class="list-desc">Autonomous 3-layer predictive maintenance network evaluating real-time high-frequency hardware curve telemetry directly at the edge nodes[cite: 70, 71, 72].</p>
                     </div>
                     <div>
-                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span>
-                    </div>
-                </div>
-
-                <div class="card scroll-reveal">
-                    <div>
-                        <div class="meta">2026</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">RipeRadar</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">End-to-end IoT fruit ripening framework incorporating visual classification, BLE data orchestration, and cloud MQTT telemetry routing.</p>
-                    </div>
-                    <div>
-                        <span class="tag">IoT</span><span class="tag">Embedded ML</span>
+                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span><span class="tag">Docker</span>
                     </div>
                 </div>
 
                 <div class="card scroll-reveal">
                     <div>
                         <div class="meta">2026</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">DRE Graph</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">High-performance pipeline mapping compressed Portuguese Electronic Republic Diary data into dynamic OWL/RDF graphs.</p>
+                        <h3>RipeRadar</h3>
+                        <p class="list-desc">End-to-end multi-sensor biometric telemetry setup processing local vision tracking and routing secure cloud broker packages[cite: 79, 80, 81].</p>
                     </div>
                     <div>
-                        <span class="tag">Semantic Web</span><span class="tag">Flask</span>
-                    </div>
-                </div>
-
-                <div class="card scroll-reveal">
-                    <div>
-                        <div class="meta">2026</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">Traffic RTMS</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">INMF software architecture featuring Q-Learning traffic control and cryptographic hardening mechanisms.</p>
-                    </div>
-                    <div>
-                        <span class="tag">Reinforcement Learning</span>
+                        <span class="tag">IoT Framework</span><span class="tag">Embedded ML</span><span class="tag">MQTT</span>
                     </div>
                 </div>
 
                 <div class="card scroll-reveal">
                     <div>
                         <div class="meta">2026</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">Semantic QA</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">Hybrid Retriever system leveraging Siamese BERT-networks combined with generative QA LLM modules.</p>
+                        <h3>DRE Graph</h3>
+                        <p class="list-desc">High-speed unstructured dictionary parser converting data into linked Web Ontology Language layers with hybrid query controls[cite: 87, 88, 89].</p>
                     </div>
                     <div>
-                        <span class="tag">NLP</span><span class="tag">LLMs</span>
+                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span><span class="tag">Flask</span>
+                    </div>
+                </div>
+
+                <div class="card scroll-reveal">
+                    <div>
+                        <div class="meta">2026</div>
+                        <h3>Traffic RTMS</h3>
+                        <p class="list-desc">Adaptive decision pipeline deploying Reinforcement Learning traffic logic secured via custom Fernet symmetric key encryption steps[cite: 95, 97, 98].</p>
+                    </div>
+                    <div>
+                        <span class="tag">Reinforcement Learning</span><span class="tag">Symmetric Cryptography</span>
+                    </div>
+                </div>
+
+                <div class="card scroll-reveal">
+                    <div>
+                        <div class="meta">2026</div>
+                        <h3>Semantic Search</h3>
+                        <p class="list-desc">Dual-Strategy extraction module applying Siamese BERT-networks to compute cosine-similarities and generate context summaries[cite: 58, 59, 60].</p>
+                    </div>
+                    <div>
+                        <span class="tag">NLP Pipeline</span><span class="tag">Sentence-BERT</span><span class="tag">LLMs</span>
                     </div>
                 </div>
 
                 <div class="card scroll-reveal">
                     <div>
                         <div class="meta">2025</div>
-                        <h3 class="item-title" style="color: var(--accent-cyan);">QoS VNFs</h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 8px; line-height: 1.5;">Modular QoS virtualization architecture using Virtual Network Functions for access control and traffic classification.</p>
+                        <h3>QoS VNFs</h3>
+                        <p class="list-desc">Virtualized network core deploying virtual functions designed for traffic classification, access control policing, and dynamic scheduling[cite: 55, 56].</p>
                     </div>
                     <div>
-                        <span class="tag">NFV</span><span class="tag">Distributed Systems</span>
+                        <span class="tag">Distributed Systems</span><span class="tag">NFV Virtualization</span>
                     </div>
                 </div>
 
@@ -446,11 +476,11 @@
     </main>
 
     <footer>
-        <p>Eduarda Pereira // Connect via <a href="#">LinkedIn</a> or <a href="#">GitHub</a></p>
+        <p>© 2026 Eduarda Pereira // Connection Ports: <a href="#">LinkedIn</a> or <a href="#">GitHub</a></p>
     </footer>
 
     <script>
-        // Alternador de Ambiente (Escuro / Claro)
+        // Smooth Environment Toggle
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
@@ -460,19 +490,20 @@
             }
         }
 
-        // Motor de Visualização Gradual (Scroll Smooth Reveal)
-        const observer = new IntersectionObserver((entries) => {
+        // Intersection Observer for Smooth Scroll Reveal (Cards sliding and fading up seamlessly)
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
         }, {
-            threshold: 0.1
+            threshold: 0.08,
+            rootMargin: "0px 0px -40px 0px"
         });
 
-        document.querySelectorAll('.scroll-reveal').forEach(element => {
-            observer.observe(element);
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            scrollObserver.observe(el);
         });
     </script>
 </body>
