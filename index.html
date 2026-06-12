@@ -6,10 +6,10 @@
     <title>Eduarda Pereira | Portfolio</title>
     <style>
         :root {
-            --bg-color: #0c1016; /* Deep dark void space */
+            --bg-color: #0c1016; 
             --panel-bg: #161b22;
-            --accent-cyan: #27b7a5; /* Vibrant SOHub teal/cyan */
-            --accent-green: #39ff14; /* Shocking neon green */
+            --accent-cyan: #27b7a5; 
+            --accent-green: #39ff14; 
             --text-main: #f0f6f8;
             --text-muted: #8b949e;
             --border-color: #21262d;
@@ -18,10 +18,10 @@
         }
 
         [data-theme="light"] {
-            --bg-color: #f4fbf9; /* Super bright fresh mint mint */
+            --bg-color: #f4fbf9; 
             --panel-bg: #ffffff;
-            --accent-cyan: #0ea5e9; /* Blazing electric cyan */
-            --accent-green: #10b981; /* High-contrast bright green */
+            --accent-cyan: #0ea5e9; 
+            --accent-green: #10b981; 
             --text-main: #0c1016;
             --text-muted: #64748b;
             --border-color: #cbd5e1;
@@ -47,7 +47,7 @@
             transition: background-color var(--transition-speed) cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Fixed Premium Floating Navigation */
+        /* Fixed Navigation */
         nav {
             position: fixed;
             top: 20px; left: 20px; right: 20px;
@@ -75,7 +75,7 @@
             transition: letter-spacing 0.4s ease;
         }
         .nav-logo:hover {
-            letter-spacing: 4px; /* Dynamic spacing on hover */
+            letter-spacing: 4px;
         }
 
         .menu-links {
@@ -86,7 +86,7 @@
             border-radius: 40px;
         }
         [data-theme="light"] .menu-links {
-            background: rgba(0, 240, 255, 0.08); /* Bright accent background on light menu */
+            background: rgba(0, 240, 255, 0.08);
         }
 
         .menu-links a {
@@ -103,11 +103,11 @@
         .menu-links a:hover {
             color: #ffffff;
             background: var(--accent-cyan);
-            letter-spacing: 2px; /* Letter spacing expansion on links */
+            letter-spacing: 2px;
         }
 
         [data-theme="light"] .menu-links a:hover {
-            background: var(--accent-green); /* Ultra bright shift on light mode */
+            background: var(--accent-green);
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
         }
 
@@ -130,7 +130,6 @@
             border-color: var(--accent-green);
         }
 
-        /* Container Blueprint */
         main {
             max-width: 1000px;
             margin: 0 auto;
@@ -141,7 +140,7 @@
             scroll-margin-top: 130px;
         }
 
-        /* Typewriter text running left to right */
+        /* Typewriter Animation */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -158,7 +157,7 @@
             transition: letter-spacing 0.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .typing-title:hover {
-            letter-spacing: 6px; /* Title letter expansion */
+            letter-spacing: 6px;
         }
 
         @keyframes typing {
@@ -179,7 +178,6 @@
             text-transform: uppercase;
         }
 
-        /* Fluid Floating Structural Panels */
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -194,8 +192,8 @@
         }
 
         @keyframes float-vertical {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); } /* Fluid constant floating movement */
+            0%, 100__ { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         .section-header {
@@ -209,7 +207,7 @@
             letter-spacing: 3px;
         }
 
-        /* Smooth Scroll-Driven Entry Reveal Engines */
+        /* Scroll Reveal Styles */
         .scroll-reveal {
             opacity: 0;
             transform: translateY(60px) scale(0.96);
@@ -222,44 +220,102 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Grid Map and Magnify Scaling Cards */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
+        /* Project Card Configuration with Hover Arrow */
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 30px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            cursor: pointer;
-            transform: scale(1);
+            text-decoration: none;
+            color: inherit;
+            overflow: hidden;
+            position: relative;
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
                         border-color 0.4s ease, 
                         box-shadow 0.4s ease;
         }
 
-        /* Magnify grow hover trigger */
         .card:hover {
-            transform: scale(1.08) translateY(-5px); /* Massive smooth scale-up enlargement */
+            transform: scale(1.06) translateY(-5px);
             border-color: var(--accent-green);
             box-shadow: 0 25px 50px rgba(39, 183, 165, 0.15);
         }
 
+        /* Project Image Containers */
+        .project-img-wrapper {
+            width: 100%;
+            height: 160px;
+            border-radius: calc(var(--radius) - 8px);
+            overflow: hidden;
+            margin-bottom: 20px;
+            background: #080b11;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-cover: cover;
+            opacity: 0.6;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .card:hover .project-img {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Dynamic Sliding Arrow Header Layout */
+        .card-title-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-left: 0;
+            transition: padding-left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        
+        .card:hover .card-title-container {
+            padding-left: 35px; /* Makes room for the emerging arrow */
+        }
+
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 800;
-            transition: letter-spacing 0.3s ease;
+            transition: letter-spacing 0.3s ease, color 0.3s ease;
         }
         .card:hover h3 {
-            letter-spacing: 2px; /* Card content letters space out on hover */
+            letter-spacing: 1.5px;
             color: var(--accent-cyan);
+        }
+
+        /* Sliding Hover Arrow Component */
+        .hover-arrow {
+            position: absolute;
+            left: -10px;
+            opacity: 0;
+            width: 22px;
+            height: 22px;
+            color: var(--accent-cyan);
+            transform: translateX(-20px);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), 
+                        opacity 0.4s ease;
+        }
+        [data-theme="light"] .hover-arrow {
+            color: var(--accent-green);
+        }
+        .card:hover .hover-arrow {
+            opacity: 1;
+            transform: translateX(10px);
         }
 
         .meta {
@@ -281,7 +337,6 @@
             border-radius: 40px;
             border: 1px solid rgba(39, 183, 165, 0.15);
             font-weight: 700;
-            transition: all 0.3s ease;
         }
         .card:hover .tag {
             background: var(--accent-cyan);
@@ -308,10 +363,6 @@
             color: var(--accent-cyan);
             text-decoration: none;
             font-weight: 700;
-            transition: letter-spacing 0.3s ease;
-        }
-        footer a:hover {
-            letter-spacing: 2px;
         }
     </style>
 </head>
@@ -340,8 +391,8 @@
                 
                 <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-main); font-weight: 400;">
                     Currently pursuing an MSc in Informatics Engineering, centering depth on Distributed Systems, 
-                    Artificial Intelligence, and Network Optimization. Specialized in engineering high-performance automated data streams, 
-                    low-resource semantic search layouts, and real-time edge processing configurations[cite: 14, 15, 70].
+                    Artificial Intelligence, and Network Optimization[cite: 12]. Specialized in engineering high-performance automated data streams, 
+                    low-power embedded computing frameworks, and real-time network virtualization.
                 </p>
 
                 <div style="margin-top: 35px; display: flex; flex-wrap: wrap; gap: 6px;">
@@ -352,18 +403,18 @@
             </div>
 
             <div class="grid" style="margin-top: 30px;">
-                <div class="card scroll-reveal">
+                <div class="card scroll-reveal" style="cursor: default;">
                     <div>
                         <div class="meta">2025 - Present</div>
-                        <h3>Universidade do Minho</h3>
+                        <h3 style="margin-bottom: 10px;">Universidade do Minho</h3>
                         <p class="list-desc">Master's in Informatics Engineering — Focused on Distributed AI, Applied IoT, and QoS Architectures[cite: 18, 19, 21].</p>
                     </div>
                 </div>
-                <div class="card scroll-reveal">
+                <div class="card scroll-reveal" style="cursor: default;">
                     <div>
                         <div class="meta">2022 - 2025</div>
                         <h3>Universidade do Algarve</h3>
-                        <p class="list-desc">Degree in Computer Science — Core algorithms, data architectures, and advanced operating systems[cite: 23, 24, 25].</p>
+                        <p class="list-desc">Degree in Computer Science — Core algorithms, data architectures, computer networks, and advanced operating systems[cite: 23, 24, 25, 26].</p>
                     </div>
                 </div>
             </div>
@@ -373,27 +424,35 @@
             <h2 class="section-header">Experience</h2>
             <div class="grid">
                 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/gsr" target="_blank" class="card scroll-reveal">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Network Stream Architecture Overlay]</div>
+                        </div>
                         <div class="meta">Jun 2026 - Jul 2026</div>
-                        <h3>INESC TEC</h3>
-                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem;">Research Intern</p>
-                        <p class="list-desc">Engineered research infrastructure regarding Multimodal Streaming and Network Perception processing pipelines[cite: 114].</p>
+                        
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>INESC TEC</h3>
+                        </div>
+                        
+                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">Research Intern</p>
+                        <p class="list-desc">Focused infrastructure design on Multimodal Streaming and Network Perception processing frameworks[cite: 113, 114].</p>
                     </div>
                     <div>
-                        <span class="tag">Data Streaming</span>
+                        <span class="tag">Repository: gsr</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="card scroll-reveal">
+                <div class="card scroll-reveal" style="cursor: default;">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[SaaS Integration Blueprint]</div>
+                        </div>
                         <div class="meta">Aug 2025 - Sep 2025</div>
                         <h3>SurfAventura</h3>
-                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem;">IT & Operations Manager</p>
-                        <p class="list-desc">Led technical design, pipeline architecture alignment, and full deployment operations of an analytics SaaS platform[cite: 111, 112].</p>
-                    </div>
-                    <div>
-                        <span class="tag">SaaS Operations</span>
+                        <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">IT & Operations</p>
+                        <p class="list-desc">Led technical evaluations and end-to-end deployments of analytical SaaS platform configurations to manage workspace data structures[cite: 111, 112].</p>
                     </div>
                 </div>
 
@@ -404,71 +463,90 @@
             <h2 class="section-header">Selected Work & Systems</h2>
             <div class="grid">
                 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/DriftSense-PM" target="_blank" class="card scroll-reveal">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Edge Hardware & Sensor Wave Graph]</div>
+                        </div>
                         <div class="meta">2026</div>
-                        <h3>DriftSense-PM</h3>
-                        <p class="list-desc">Autonomous 3-layer predictive maintenance network evaluating real-time high-frequency hardware curve telemetry directly at the edge nodes[cite: 70, 71, 72].</p>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>DriftSense-PM</h3>
+                        </div>
+                        <p class="list-desc">Autonomous edge predictive maintenance system tracking real-time physical parameters using an Arduino Portenta C33[cite: 68, 70, 71].</p>
                     </div>
                     <div>
-                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span><span class="tag">Docker</span>
+                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/RipeRadar" target="_blank" class="card scroll-reveal">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Telemetry Distribution Layout]</div>
+                        </div>
                         <div class="meta">2026</div>
-                        <h3>RipeRadar</h3>
-                        <p class="list-desc">End-to-end multi-sensor biometric telemetry setup processing local vision tracking and routing secure cloud broker packages[cite: 79, 80, 81].</p>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>RipeRadar</h3>
+                        </div>
+                        <p class="list-desc">End-to-end IoT fruit ripening framework combining BLE sensor configurations and live MQTT telemetry routing[cite: 77, 79, 81].</p>
                     </div>
                     <div>
-                        <span class="tag">IoT Framework</span><span class="tag">Embedded ML</span><span class="tag">MQTT</span>
+                        <span class="tag">IoT Framework</span><span class="tag">Embedded ML</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/Projeto2026" target="_blank" class="card scroll-reveal">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Ontology Web Topology Map]</div>
+                        </div>
                         <div class="meta">2026</div>
-                        <h3>DRE Graph</h3>
-                        <p class="list-desc">High-speed unstructured dictionary parser converting data into linked Web Ontology Language layers with hybrid query controls[cite: 87, 88, 89].</p>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>DRE Graph</h3>
+                        </div>
+                        <p class="list-desc">High-performance ingestion pipeline transforming unstructured legal document corpora into linked OWL/RDF ontology layers[cite: 85, 87, 88].</p>
                     </div>
                     <div>
-                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span><span class="tag">Flask</span>
+                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/DAA" target="_blank" class="card scroll-reveal">
                     <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Simulation Matrix Layout]</div>
+                        </div>
                         <div class="meta">2026</div>
-                        <h3>Traffic RTMS</h3>
-                        <p class="list-desc">Adaptive decision pipeline deploying Reinforcement Learning traffic logic secured via custom Fernet symmetric key encryption steps[cite: 95, 97, 98].</p>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Traffic RTMS</h3>
+                        </div>
+                        <p class="list-desc">INMF system framework combining Q-Learning tracking dashboard loops secured by Fernet symmetric key configurations[cite: 93, 95, 97, 98].</p>
                     </div>
                     <div>
-                        <span class="tag">Reinforcement Learning</span><span class="tag">Symmetric Cryptography</span>
+                        <span class="tag">Reinforcement Learning</span>
                     </div>
-                </div>
+                </a>
 
-                <div class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/TP3-QoSi" target="_blank" class="card scroll-reveal">
                     <div>
-                        <div class="meta">2026</div>
-                        <h3>Semantic Search</h3>
-                        <p class="list-desc">Dual-Strategy extraction module applying Siamese BERT-networks to compute cosine-similarities and generate context summaries[cite: 58, 59, 60].</p>
-                    </div>
-                    <div>
-                        <span class="tag">NLP Pipeline</span><span class="tag">Sentence-BERT</span><span class="tag">LLMs</span>
-                    </div>
-                </div>
-
-                <div class="card scroll-reveal">
-                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Virtual Function Chain Diagram]</div>
+                        </div>
                         <div class="meta">2025</div>
-                        <h3>QoS VNFs</h3>
-                        <p class="list-desc">Virtualized network core deploying virtual functions designed for traffic classification, access control policing, and dynamic scheduling[cite: 55, 56].</p>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>QoS VNFs</h3>
+                        </div>
+                        <p class="list-desc">Modular virtualization core routing IP-based service chaining nodes for secure access management and load policing[cite: 54, 55, 56].</p>
                     </div>
                     <div>
                         <span class="tag">Distributed Systems</span><span class="tag">NFV Virtualization</span>
                     </div>
-                </div>
+                </a>
 
             </div>
         </section>
@@ -476,11 +554,10 @@
     </main>
 
     <footer>
-        <p>© 2026 Eduarda Pereira // Connection Ports: <a href="#">LinkedIn</a> or <a href="#">GitHub</a></p>
+        <p>© 2026 Eduarda Pereira // Connection Ports: <a href="https://github.com/eduardaspereira" target="_blank">GitHub Profile</a></p>
     </footer>
 
     <script>
-        // Smooth Environment Toggle
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             if (currentTheme === 'light') {
@@ -490,7 +567,6 @@
             }
         }
 
-        // Intersection Observer for Smooth Scroll Reveal (Cards sliding and fading up seamlessly)
         const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
