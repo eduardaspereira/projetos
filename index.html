@@ -43,26 +43,27 @@
             color: var(--text-main);
             overflow-x: hidden;
             padding: 24px;
-            padding-top: 120px;
+            padding-top: 140px;
             transition: background-color var(--transition-speed) cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Fixed Navigation */
+        /* Responsive Navigation Hub */
         nav {
             position: fixed;
             top: 20px; left: 20px; right: 20px;
-            height: 75px;
+            height: auto;
+            min-height: 75px;
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
-            padding: 0 35px;
+            padding: 15px 35px;
             z-index: 1000;
             backdrop-filter: blur(12px);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            transition: all var(--transition-speed) ease;
         }
 
         .nav-logo {
@@ -73,9 +74,12 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: letter-spacing 0.4s ease;
+            display: flex;
+            flex-direction: column;
         }
-        .nav-logo:hover {
-            letter-spacing: 4px;
+
+        .nav-logo span.surname {
+            display: inline;
         }
 
         .menu-links {
@@ -85,6 +89,7 @@
             padding: 6px;
             border-radius: 40px;
         }
+
         [data-theme="light"] .menu-links {
             background: rgba(0, 240, 255, 0.08);
         }
@@ -106,27 +111,30 @@
             letter-spacing: 2px;
         }
 
-        [data-theme="light"] .menu-links a:hover {
-            background: var(--accent-green);
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        /* Theme Toggle Positioned Below "About" Link conceptually via Flex Order */
+        .nav-right-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .theme-toggle {
             background: transparent;
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            width: 46px;
-            height: 46px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .theme-toggle:hover {
-            transform: rotate(360deg) scale(1.15);
+            transform: rotate(360deg) scale(1.1);
             border-color: var(--accent-green);
         }
 
@@ -136,11 +144,23 @@
         }
 
         section {
-            margin-bottom: 120px;
-            scroll-margin-top: 130px;
+            margin-bottom: 140px;
+            scroll-margin-top: 160px;
         }
 
-        /* Typewriter Animation */
+        /* Progressive Text Fade-In-On-Scroll Configuration */
+        .text-fade-node {
+            color: rgba(240, 246, 248, 0.15);
+            transition: color 0.6s linear;
+        }
+        [data-theme="light"] .text-fade-node {
+            color: rgba(12, 16, 22, 0.15);
+        }
+        .text-fade-node.active {
+            color: var(--text-main);
+        }
+
+        /* Typewriter Animation Line */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -178,6 +198,7 @@
             text-transform: uppercase;
         }
 
+        /* Floating Cards Frame */
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -185,14 +206,10 @@
             border-radius: var(--radius);
             box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             animation: float-vertical 7s ease-in-out infinite;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .panel:hover {
-            border-color: var(--accent-cyan);
         }
 
         @keyframes float-vertical {
-            0%, 100__ { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-15px); }
         }
 
@@ -201,21 +218,63 @@
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 40px;
-            transition: letter-spacing 0.4s ease;
-        }
-        .section-header:hover {
-            letter-spacing: 3px;
         }
 
-        /* Scroll Reveal Styles */
-        .scroll-reveal {
+        /* Horizontal Carousel Slider for Tech Stack Frameworks */
+        .slider-wrapper {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            overflow: hidden;
+            background: linear-gradient(90deg, transparent, rgba(39, 183, 165, 0.03), transparent);
+            padding: 30px 0;
+            margin-bottom: 80px;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(250px * 16);
+            animation: continuous-scroll 25s linear infinite;
+        }
+
+        @keyframes continuous-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 8)); }
+        }
+
+        .slider-card {
+            width: 230px;
+            height: 100px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .slider-card span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Center-Focus Snap Slide Scroll Architecture */
+        .mid-scroll-trigger {
             opacity: 0;
-            transform: translateY(60px) scale(0.96);
-            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), 
-                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(100px) scale(0.9);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
+                        transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .scroll-reveal.visible {
+        .mid-scroll-trigger.active-mid {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
@@ -226,7 +285,7 @@
             gap: 30px;
         }
 
-        /* Project Card Configuration with Hover Arrow */
+        /* Project Cards Layout containing Dynamic SOHub Arrows */
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -251,7 +310,6 @@
             box-shadow: 0 25px 50px rgba(39, 183, 165, 0.15);
         }
 
-        /* Project Image Containers */
         .project-img-wrapper {
             width: 100%;
             height: 160px;
@@ -266,7 +324,7 @@
         .project-img {
             width: 100%;
             height: 100%;
-            object-cover: cover;
+            object-fit: cover;
             opacity: 0.6;
             transition: opacity 0.4s ease, transform 0.4s ease;
         }
@@ -275,7 +333,6 @@
             transform: scale(1.05);
         }
 
-        /* Dynamic Sliding Arrow Header Layout */
         .card-title-container {
             display: flex;
             align-items: center;
@@ -285,7 +342,7 @@
         }
         
         .card:hover .card-title-container {
-            padding-left: 35px; /* Makes room for the emerging arrow */
+            padding-left: 35px;
         }
 
         .card h3 {
@@ -298,7 +355,7 @@
             color: var(--accent-cyan);
         }
 
-        /* Sliding Hover Arrow Component */
+        /* Emerging Horizontal Sliding Arrow Design */
         .hover-arrow {
             position: absolute;
             left: -10px;
@@ -316,6 +373,21 @@
         .card:hover .hover-arrow {
             opacity: 1;
             transform: translateX(10px);
+        }
+
+        /* Live Increasing Counter Layout */
+        .commit-counter {
+            font-size: 0.8rem;
+            font-weight: 700;
+            background: rgba(0,0,0,0.2);
+            padding: 4px 10px;
+            border-radius: 8px;
+            color: var(--accent-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 15px;
+            border: 1px solid rgba(57, 255, 20, 0.15);
         }
 
         .meta {
@@ -338,16 +410,45 @@
             border: 1px solid rgba(39, 183, 165, 0.15);
             font-weight: 700;
         }
-        .card:hover .tag {
-            background: var(--accent-cyan);
-            color: #ffffff;
-        }
 
         .list-desc {
             margin-top: 10px;
             font-size: 0.95rem;
             color: var(--text-muted);
             line-height: 1.5;
+        }
+
+        /* Action Connection Buttons */
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: var(--accent-cyan);
+            color: #ffffff;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(39, 183, 165, 0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            color: var(--text-main);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-green);
+            box-shadow: none;
         }
 
         footer {
@@ -359,21 +460,43 @@
             border-top: 1px solid var(--border-color);
         }
 
-        footer a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            font-weight: 700;
+        /* Media Queries for Custom Responsive Formats */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 160px;
+            }
+            nav {
+                padding: 15px 20px;
+            }
+            /* Stack Surname below Name on Mobile viewports */
+            .nav-logo {
+                font-size: 1.1rem;
+            }
+            .nav-logo span.surname {
+                display: block;
+                margin-top: 2px;
+            }
+            /* Shift links cleanly away from center view */
+            .menu-links {
+                display: none;
+            }
+            .theme-toggle {
+                width: 34px;
+                height: 34px;
+            }
+            .typing-title {
+                font-size: 2.3rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="nav-logo">Eduarda.P</div>
-        <div class="nav-right">
+        <div class="nav-logo">Eduarda <span class="surname">Pereira</span></div>
+        <div class="nav-right-container">
             <div class="menu-links">
                 <a href="#about">About</a>
-                <a href="#experience">Experience</a>
                 <a href="#projects">Projects</a>
             </div>
             <button class="theme-toggle" onclick="toggleTheme()">⚡</button>
@@ -389,70 +512,94 @@
                 </div>
                 <div class="subtitle">Computer Science Master's Student</div>
                 
-                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-main); font-weight: 400;">
-                    Currently pursuing an MSc in Informatics Engineering, centering depth on Distributed Systems, 
-                    Artificial Intelligence, and Network Optimization[cite: 12]. Specialized in engineering high-performance automated data streams, 
-                    low-power embedded computing frameworks, and real-time network virtualization.
+                <p style="font-size: 1.3rem; line-height: 1.9;" id="scroll-words-container">
+                    <span class="text-fade-node">Currently</span> 
+                    <span class="text-fade-node">pursuing</span> 
+                    <span class="text-fade-node">an</span> 
+                    <span class="text-fade-node">MSc</span> 
+                    <span class="text-fade-node">in</span> 
+                    <span class="text-fade-node">Informatics</span> 
+                    <span class="text-fade-node">Engineering,</span> 
+                    <span class="text-fade-node">centering</span> 
+                    <span class="text-fade-node">core</span> 
+                    <span class="text-fade-node">depth</span> 
+                    <span class="text-fade-node">on</span> 
+                    <span class="text-fade-node">Distributed</span> 
+                    <span class="text-fade-node">Systems,</span> 
+                    <span class="text-fade-node">Artificial</span> 
+                    <span class="text-fade-node">Intelligence,</span> 
+                    <span class="text-fade-node">and</span> 
+                    <span class="text-fade-node">Network</span> 
+                    <span class="text-fade-node">Optimization.</span> 
+                    <span class="text-fade-node">Passionate</span> 
+                    <span class="text-fade-node">about</span> 
+                    <span class="text-fade-node">constructing</span> 
+                    <span class="text-fade-node">high-performance</span> 
+                    <span class="text-fade-node">automated</span> 
+                    <span class="text-fade-node">data</span> 
+                    <span class="text-fade-node">streams</span> 
+                    <span class="text-fade-node">and</span> 
+                    <span class="text-fade-node">low-power</span> 
+                    <span class="text-fade-node">embedded</span> 
+                    <span class="text-fade-node">computing</span> 
+                    <span class="text-fade-node">pipelines.</span>
                 </p>
 
-                <div style="margin-top: 35px; display: flex; flex-wrap: wrap; gap: 6px;">
-                    <span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">NLP</span>
-                    <span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">Vagrant</span>
-                    <span class="tag">GNU Bash</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">C/C++</span>
-                </div>
-            </div>
-
-            <div class="grid" style="margin-top: 30px;">
-                <div class="card scroll-reveal" style="cursor: default;">
-                    <div>
-                        <div class="meta">2025 - Present</div>
-                        <h3 style="margin-bottom: 10px;">Universidade do Minho</h3>
-                        <p class="list-desc">Master's in Informatics Engineering — Focused on Distributed AI, Applied IoT, and QoS Architectures[cite: 18, 19, 21].</p>
-                    </div>
-                </div>
-                <div class="card scroll-reveal" style="cursor: default;">
-                    <div>
-                        <div class="meta">2022 - 2025</div>
-                        <h3>Universidade do Algarve</h3>
-                        <p class="list-desc">Degree in Computer Science — Core algorithms, data architectures, computer networks, and advanced operating systems[cite: 23, 24, 25, 26].</p>
-                    </div>
+                <div class="cta-group">
+                    <a href="mailto:your-email@domain.com" class="btn">Contact Me</a>
+                    <a href="https://calendly.com" target="_blank" class="btn btn-secondary">Book a Call</a>
+                    <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">LinkedIn</a>
                 </div>
             </div>
         </section>
 
+        <h2 class="section-header" style="margin-bottom: 20px;">Technologies & Core Core Engine</h2>
+        <div class="slider-wrapper">
+            <div class="slider-track">
+                <div class="slider-card">Python <span>Data & Analytics</span></div>
+                <div class="slider-card">Docker <span>Containerization</span></div>
+                <div class="slider-card">Ansible <span>Automation Ops</span></div>
+                <div class="slider-card">Vagrant <span>Environments</span></div>
+                <div class="slider-card">GNU Bash <span>Shell Architecture</span></div>
+                <div class="slider-card">Java <span>Backend Core</span></div>
+                <div class="slider-card">SQL <span>Database Clusters</span></div>
+                <div class="slider-card">C / C++ <span>Embedded Code</span></div>
+                <div class="slider-card">Python <span>Data & Analytics</span></div>
+                <div class="slider-card">Docker <span>Containerization</span></div>
+                <div class="slider-card">Ansible <span>Automation Ops</span></div>
+                <div class="slider-card">Vagrant <span>Environments</span></div>
+                <div class="slider-card">GNU Bash <span>Shell Architecture</span></div>
+                <div class="slider-card">Java <span>Backend Core</span></div>
+                <div class="slider-card">SQL <span>Database Clusters</span></div>
+                <div class="slider-card">C / C++ <span>Embedded Code</span></div>
+            </div>
+        </div>
+
         <section id="experience">
-            <h2 class="section-header">Experience</h2>
+            <h2 class="section-header">Academic & Work Journey</h2>
             <div class="grid">
                 
-                <a href="https://github.com/eduardaspereira/gsr" target="_blank" class="card scroll-reveal">
+                <div class="card mid-scroll-trigger" style="cursor: default;">
                     <div>
-                        <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Network Stream Architecture Overlay]</div>
-                        </div>
                         <div class="meta">Jun 2026 - Jul 2026</div>
-                        
-                        <div class="card-title-container">
-                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                            <h3>INESC TEC</h3>
-                        </div>
-                        
+                        <h3>INESC TEC</h3>
                         <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">Research Intern</p>
-                        <p class="list-desc">Focused infrastructure design on Multimodal Streaming and Network Perception processing frameworks[cite: 113, 114].</p>
+                        <p class="list-desc">Infrastructure pipeline validation regarding Multimodal Streaming and Network Perception processing methods.</p>
                     </div>
                     <div>
-                        <span class="tag">Repository: gsr</span>
+                        <span class="tag">Academic Research</span>
                     </div>
-                </a>
+                </div>
 
-                <div class="card scroll-reveal" style="cursor: default;">
+                <div class="card mid-scroll-trigger" style="cursor: default;">
                     <div>
-                        <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[SaaS Integration Blueprint]</div>
-                        </div>
                         <div class="meta">Aug 2025 - Sep 2025</div>
                         <h3>SurfAventura</h3>
                         <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">IT & Operations</p>
-                        <p class="list-desc">Led technical evaluations and end-to-end deployments of analytical SaaS platform configurations to manage workspace data structures[cite: 111, 112].</p>
+                        <p class="list-desc">Led comprehensive technological reviews and deployments of analytical SaaS platform components.</p>
+                    </div>
+                    <div>
+                        <span class="tag">Systems Execution</span>
                     </div>
                 </div>
 
@@ -460,91 +607,96 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-header">Selected Work & Systems</h2>
+            <h2 class="section-header">Selected Work Systems</h2>
             <div class="grid">
                 
-                <a href="https://github.com/eduardaspereira/DriftSense-PM" target="_blank" class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/DriftSense-PM" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Edge Hardware & Sensor Wave Graph]</div>
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Hardware Signal Layout]</div>
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>DriftSense-PM</h3>
                         </div>
-                        <p class="list-desc">Autonomous edge predictive maintenance system tracking real-time physical parameters using an Arduino Portenta C33[cite: 68, 70, 71].</p>
+                        <p class="list-desc">Autonomous edge predictive maintenance structures parsing continuous telemetry streams.</p>
+                        <div class="commit-counter" data-repo="DriftSense-PM">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Edge Computing</span><span class="tag">OC-SVM</span>
+                        <span class="tag">Edge AI</span><span class="tag">OC-SVM</span><span class="tag">IoT Telemetry</span><span class="tag">Predictive Ops</span>
                     </div>
                 </a>
 
-                <a href="https://github.com/eduardaspereira/RipeRadar" target="_blank" class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/RipeRadar" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Telemetry Distribution Layout]</div>
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Biometric Data Mapping]</div>
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>RipeRadar</h3>
                         </div>
-                        <p class="list-desc">End-to-end IoT fruit ripening framework combining BLE sensor configurations and live MQTT telemetry routing[cite: 77, 79, 81].</p>
+                        <p class="list-desc">End-to-end framework integrating embedded computer vision tools over live secure MQTT connections.</p>
+                        <div class="commit-counter" data-repo="RipeRadar">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">IoT Framework</span><span class="tag">Embedded ML</span>
+                        <span class="tag">MQTT Cloud</span><span class="tag">Embedded ML</span><span class="tag">BLE Wireless</span><span class="tag">Sensors</span>
                     </div>
                 </a>
 
-                <a href="https://github.com/eduardaspereira/Projeto2026" target="_blank" class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/Projeto2026" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Ontology Web Topology Map]</div>
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Ontology Map Layout]</div>
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>DRE Graph</h3>
                         </div>
-                        <p class="list-desc">High-performance ingestion pipeline transforming unstructured legal document corpora into linked OWL/RDF ontology layers[cite: 85, 87, 88].</p>
+                        <p class="list-desc">High-speed structured mapping pipeline tracking interconnected database relationship graphs.</p>
+                        <div class="commit-counter" data-repo="Projeto2026">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span>
+                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span><span class="tag">Flask API</span><span class="tag">Data Extraction</span>
                     </div>
                 </a>
 
-                <a href="https://github.com/eduardaspereira/DAA" target="_blank" class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/DAA" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Simulation Matrix Layout]</div>
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Simulation Array Node]</div>
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>Traffic RTMS</h3>
                         </div>
-                        <p class="list-desc">INMF system framework combining Q-Learning tracking dashboard loops secured by Fernet symmetric key configurations[cite: 93, 95, 97, 98].</p>
+                        <p class="list-desc">INMF orchestration architecture tracking remote tabular Q-Learning control parameters securely.</p>
+                        <div class="commit-counter" data-repo="DAA">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Reinforcement Learning</span>
+                        <span class="tag">Reinforcement Learning</span><span class="tag">SNMP Cryptography</span><span class="tag">Fernet Keys</span><span class="tag">Pygame Data</span>
                     </div>
                 </a>
 
-                <a href="https://github.com/eduardaspereira/TP3-QoSi" target="_blank" class="card scroll-reveal">
+                <a href="https://github.com/eduardaspereira/TP3-QoSi" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Virtual Function Chain Diagram]</div>
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Virtual Function Array]</div>
                         </div>
                         <div class="meta">2025</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>QoS VNFs</h3>
                         </div>
-                        <p class="list-desc">Modular virtualization core routing IP-based service chaining nodes for secure access management and load policing[cite: 54, 55, 56].</p>
+                        <p class="list-desc">Modular network virtualization setup deploying components across a custom structured routing core.</p>
+                        <div class="commit-counter" data-repo="TP3-QoSi">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Distributed Systems</span><span class="tag">NFV Virtualization</span>
+                        <span class="tag">NFV Virtualization</span><span class="tag">Distributed Systems</span><span class="tag">Network Core</span><span class="tag">IP Routing</span>
                     </div>
                 </a>
 
@@ -554,7 +706,7 @@
     </main>
 
     <footer>
-        <p>© 2026 Eduarda Pereira // Connection Ports: <a href="https://github.com/eduardaspereira" target="_blank">GitHub Profile</a></p>
+        <p>© 2026 Eduarda Pereira // <a href="https://github.com/eduardaspereira" target="_blank">GitHub Central Hub</a></p>
     </footer>
 
     <script>
@@ -567,20 +719,63 @@
             }
         }
 
-        const scrollObserver = new IntersectionObserver((entries) => {
+        // 1. Progressively Whiten Text on Scroll Sequence
+        window.addEventListener('scroll', () => {
+            const nodes = document.querySelectorAll('.text-fade-node');
+            const windowHeight = window.innerHeight;
+
+            nodes.forEach(node => {
+                const rect = node.getBoundingClientRect();
+                // If text node passes middle height boundary, make it full color
+                if (rect.top < windowHeight * 0.65) {
+                    node.classList.add('active');
+                } else {
+                    node.classList.remove('active');
+                }
+            });
+        });
+
+        // 2. Strict Mid-Screen Intersection Observer for Card Entry Sliding Actions
+        const centerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+                    entry.target.classList.add('active-mid');
+                    // Initiate counter logic whenever a project card arrives safely in the focus viewport
+                    const counter = entry.target.querySelector('.commit-counter span');
+                    if (counter && counter.textContent === "0") {
+                        triggerAnimateCounter(counter);
+                    }
                 }
             });
         }, {
-            threshold: 0.08,
-            rootMargin: "0px 0px -40px 0px"
+            // High strict threshold margins focusing entry actions right towards center screen zones
+            rootMargin: "-25% 0px -25% 0px",
+            threshold: 0.1
         });
 
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            scrollObserver.observe(el);
+        document.querySelectorAll('.mid-scroll-trigger').forEach(el => {
+            centerObserver.observe(el);
         });
+
+        // 3. Simulated Increasing Commit Engine Going Up live
+        function triggerAnimateCounter(element) {
+            let current = 0;
+            // Generate distinct mock target limits matching engineering depth scales
+            const target = Math.floor(Math.random() * 45) + 20; 
+            const duration = 1500; 
+            const increment = target / (duration / 16);
+
+            function updateCount() {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            updateCount();
+        }
     </script>
 </body>
 </html>
