@@ -457,6 +457,7 @@
             border-top: 1px solid var(--border-color);
         }
 
+        /* Responsive Mobile Layout Adjustments */
         @media (max-width: 768px) {
             body {
                 padding-top: 160px;
@@ -474,8 +475,23 @@
             .menu-container {
                 display: none;
             }
+            /* Fixed mobile typography setup for the typewriter element */
             .typing-title {
-                font-size: 2.3rem;
+                font-size: 1.8rem; /* Scaled down so it safely fits within typical viewport widths */
+            }
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            .panel {
+                padding: 25px; /* Added internal relief for tight screens */
+            }
+        }
+
+        /* Extra tiny mobile screen fallback optimization */
+        @media (max-width: 360px) {
+            .typing-title {
+                font-size: 1.5rem;
             }
         }
     </style>
