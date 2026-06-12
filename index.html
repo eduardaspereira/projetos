@@ -47,7 +47,7 @@
             transition: background-color var(--transition-speed) cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        /* Responsive Navigation Hub */
+        /* Fixed Navigation Hub */
         nav {
             position: fixed;
             top: 20px; left: 20px; right: 20px;
@@ -82,16 +82,22 @@
             display: inline;
         }
 
-        .menu-links {
+        .menu-container {
             display: flex;
-            gap: 10px;
+            align-items: center;
+            gap: 15px;
             background: rgba(0, 0, 0, 0.04);
-            padding: 6px;
+            padding: 6px 16px 6px 6px;
             border-radius: 40px;
         }
 
-        [data-theme="light"] .menu-links {
+        [data-theme="light"] .menu-container {
             background: rgba(0, 240, 255, 0.08);
+        }
+
+        .menu-links {
+            display: flex;
+            gap: 10px;
         }
 
         .menu-links a {
@@ -109,14 +115,6 @@
             color: #ffffff;
             background: var(--accent-cyan);
             letter-spacing: 2px;
-        }
-
-        /* Theme Toggle Positioned Below "About" Link conceptually via Flex Order */
-        .nav-right-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
         }
 
         .theme-toggle {
@@ -148,7 +146,6 @@
             scroll-margin-top: 160px;
         }
 
-        /* Progressive Text Fade-In-On-Scroll Configuration */
         .text-fade-node {
             color: rgba(240, 246, 248, 0.15);
             transition: color 0.6s linear;
@@ -160,7 +157,7 @@
             color: var(--text-main);
         }
 
-        /* Typewriter Animation Line */
+        /* Typewriter Line */
         .typing-container {
             display: inline-block;
             overflow: hidden;
@@ -198,7 +195,6 @@
             text-transform: uppercase;
         }
 
-        /* Floating Cards Frame */
         .panel {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -217,10 +213,12 @@
             font-size: 2.2rem;
             font-weight: 800;
             color: var(--text-main);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
+            border-left: 5px solid var(--accent-cyan);
+            padding-left: 15px;
         }
 
-        /* Horizontal Carousel Slider for Tech Stack Frameworks */
+        /* Horizontal Infinite Framework Slider */
         .slider-wrapper {
             width: 100vw;
             position: relative;
@@ -266,7 +264,7 @@
             margin-top: 4px;
         }
 
-        /* Center-Focus Snap Slide Scroll Architecture */
+        /* Focus Scroll Reveal Elements */
         .mid-scroll-trigger {
             opacity: 0;
             transform: translateY(100px) scale(0.9);
@@ -283,9 +281,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 30px;
         }
 
-        /* Project Cards Layout containing Dynamic SOHub Arrows */
+        /* Project Cards Layout containing Emerging SOHub Hover Arrows */
         .card {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -355,7 +354,6 @@
             color: var(--accent-cyan);
         }
 
-        /* Emerging Horizontal Sliding Arrow Design */
         .hover-arrow {
             position: absolute;
             left: -10px;
@@ -375,7 +373,7 @@
             transform: translateX(10px);
         }
 
-        /* Live Increasing Counter Layout */
+        /* Increasing Counter Display */
         .commit-counter {
             font-size: 0.8rem;
             font-weight: 700;
@@ -418,7 +416,6 @@
             line-height: 1.5;
         }
 
-        /* Action Connection Buttons */
         .cta-group {
             display: flex;
             flex-wrap: wrap;
@@ -460,7 +457,6 @@
             border-top: 1px solid var(--border-color);
         }
 
-        /* Media Queries for Custom Responsive Formats */
         @media (max-width: 768px) {
             body {
                 padding-top: 160px;
@@ -468,7 +464,6 @@
             nav {
                 padding: 15px 20px;
             }
-            /* Stack Surname below Name on Mobile viewports */
             .nav-logo {
                 font-size: 1.1rem;
             }
@@ -476,13 +471,8 @@
                 display: block;
                 margin-top: 2px;
             }
-            /* Shift links cleanly away from center view */
-            .menu-links {
+            .menu-container {
                 display: none;
-            }
-            .theme-toggle {
-                width: 34px;
-                height: 34px;
             }
             .typing-title {
                 font-size: 2.3rem;
@@ -494,7 +484,7 @@
 
     <nav>
         <div class="nav-logo">Eduarda <span class="surname">Pereira</span></div>
-        <div class="nav-right-container">
+        <div class="menu-container">
             <div class="menu-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
@@ -546,14 +536,14 @@
                 </p>
 
                 <div class="cta-group">
-                    <a href="mailto:your-email@domain.com" class="btn">Contact Me</a>
-                    <a href="https://calendly.com" target="_blank" class="btn btn-secondary">Book a Call</a>
-                    <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                    <a href="mailto:eduarda.santil@outlook.pt" class="btn">Contact Me</a>
+                    <a href="https://github.com/eduardaspereira" target="_blank" class="btn btn-secondary">GitHub</a>
+                    <a href="https://www.linkedin.com/eduardaspereira" target="_blank" class="btn btn-secondary">LinkedIn</a>
                 </div>
             </div>
         </section>
 
-        <h2 class="section-header" style="margin-bottom: 20px;">Technologies & Core Core Engine</h2>
+        <h2 class="section-header" style="margin-bottom: 20px;">Technologies & Core Engine</h2>
         <div class="slider-wrapper">
             <div class="slider-track">
                 <div class="slider-card">Python <span>Data & Analytics</span></div>
@@ -576,30 +566,36 @@
         </div>
 
         <section id="experience">
-            <h2 class="section-header">Academic & Work Journey</h2>
+            <h2 class="section-header">Academic & Research Journey</h2>
             <div class="grid">
                 
                 <div class="card mid-scroll-trigger" style="cursor: default;">
                     <div>
+                        <div class="project-img-wrapper">
+                            <img src="assets/inestec.png" alt="Inesctec" class="project-img">
+                        </div>
                         <div class="meta">Jun 2026 - Jul 2026</div>
                         <h3>INESC TEC</h3>
                         <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">Research Intern</p>
-                        <p class="list-desc">Infrastructure pipeline validation regarding Multimodal Streaming and Network Perception processing methods.</p>
+                        <p class="list-desc">Collaborated on processing schemas regarding Multimodal Streaming and Network Perception processing pipelines.</p>
                     </div>
                     <div>
-                        <span class="tag">Academic Research</span>
+                        <span class="tag">Academic Research</span><span class="tag">Network Perception</span><span class="tag">Data Streams</span>
                     </div>
                 </div>
 
                 <div class="card mid-scroll-trigger" style="cursor: default;">
                     <div>
+                        <div class="project-img-wrapper">
+                            <img src="assets/surfaventura.png" alt="SaaS Architecture Blueprint" class="project-img">
+                        </div>
                         <div class="meta">Aug 2025 - Sep 2025</div>
                         <h3>SurfAventura</h3>
                         <p style="color: var(--accent-green); font-weight: 700; font-size: 0.9rem; margin-top: 5px;">IT & Operations</p>
-                        <p class="list-desc">Led comprehensive technological reviews and deployments of analytical SaaS platform components.</p>
+                        <p class="list-desc">Led technical design compliance reviews and continuous execution deployment maps of analytics SaaS components.</p>
                     </div>
                     <div>
-                        <span class="tag">Systems Execution</span>
+                        <span class="tag">Systems Execution</span><span class="tag">SaaS Platform</span><span class="tag">Workflow Integration</span>
                     </div>
                 </div>
 
@@ -607,42 +603,60 @@
         </section>
 
         <section id="projects">
-            <h2 class="section-header">Selected Work Systems</h2>
+            <h2 class="section-header">Engineering Production Pipeline</h2>
             <div class="grid">
                 
+                <a href="https://github.com/eduardaspereira/gsr" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <img src="assets/gsr.png" alt="Road Traffic Flow Forecasting Diagram" class="project-img">
+                        </div>
+                        <div class="meta">2026</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Road Traffic Management System</h3>
+                        </div>
+                        <p class="list-desc">An adaptive urban traffic management system built on top of SNMP/INMF. Features micro-simulation, real-time control, custom Fernet cryptographic hardening, and live visualization dashboards.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="gsr">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">Reinforcement Learning</span><span class="tag">SNMP Cryptography</span><span class="tag">Fernet Keys</span><span class="tag">Pygame Matrix</span><span class="tag">Active Security</span>
+                    </div>
+                </a>
+
                 <a href="https://github.com/eduardaspereira/DriftSense-PM" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Hardware Signal Layout]</div>
+                            <img src="assets/driftsense.png" alt="Road Traffic Flow Forecasting Diagram" class="project-img">
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>DriftSense-PM</h3>
                         </div>
-                        <p class="list-desc">Autonomous edge predictive maintenance structures parsing continuous telemetry streams.</p>
-                        <div class="commit-counter" data-repo="DriftSense-PM">🚀 <span>0</span> Commits</div>
+                        <p class="list-desc">An adaptive predictive maintenance and concept drift detection system optimized for the Edge. Combines Arduino/Raspberry Pi hardware logging, OC-SVM anomaly detection, and empirical latencies/energy profiling.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="DriftSense-PM">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Edge AI</span><span class="tag">OC-SVM</span><span class="tag">IoT Telemetry</span><span class="tag">Predictive Ops</span>
+                        <span class="tag">Edge AI</span><span class="tag">OC-SVM Algorithm</span><span class="tag">IoT Telemetry</span><span class="tag">Predictive Maintenance</span><span class="tag">Docker Sandbox</span>
                     </div>
                 </a>
 
                 <a href="https://github.com/eduardaspereira/RipeRadar" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Biometric Data Mapping]</div>
+                            <img src="assets/Riperadar.png" alt="Road Traffic Flow Forecasting Diagram" class="project-img">
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>RipeRadar</h3>
                         </div>
-                        <p class="list-desc">End-to-end framework integrating embedded computer vision tools over live secure MQTT connections.</p>
-                        <div class="commit-counter" data-repo="RipeRadar">🚀 <span>0</span> Commits</div>
+                        <p class="list-desc">Smart fruit ripening monitor utilizing NICLA Sense and Arduino Nano. Integrates BLE-to-MQTT python routing, embedded machine learning inference, and empirical power consumption telemetry.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="RipeRadar">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">MQTT Cloud</span><span class="tag">Embedded ML</span><span class="tag">BLE Wireless</span><span class="tag">Sensors</span>
+                        <span class="tag">MQTT Cloud</span><span class="tag">Embedded ML</span><span class="tag">BLE Wireless</span><span class="tag">Sensors Framework</span><span class="tag">Data Optimization</span>
                     </div>
                 </a>
 
@@ -656,29 +670,29 @@
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>DRE Graph</h3>
                         </div>
-                        <p class="list-desc">High-speed structured mapping pipeline tracking interconnected database relationship graphs.</p>
-                        <div class="commit-counter" data-repo="Projeto2026">🚀 <span>0</span> Commits</div>
+                        <p class="list-desc">Knowledge graph platform mapping the Portuguese DRE corpus into OWL/RDF structures. Includes an analytical Flask REST API, SQLite storage indexers, and a single-page management UI.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="Projeto2026">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF</span><span class="tag">Flask API</span><span class="tag">Data Extraction</span>
+                        <span class="tag">Semantic Web</span><span class="tag">OWL/RDF Graphs</span><span class="tag">Flask REST API</span><span class="tag">Data Ingestion</span><span class="tag">FTS5 Engine</span>
                     </div>
                 </a>
 
                 <a href="https://github.com/eduardaspereira/DAA" target="_blank" class="card mid-scroll-trigger">
                     <div>
                         <div class="project-img-wrapper">
-                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Simulation Array Node]</div>
+                            <img src="assets/daa.png" alt="Road Traffic Flow Forecasting Diagram" class="project-img">
                         </div>
                         <div class="meta">2026</div>
                         <div class="card-title-container">
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                            <h3>Traffic RTMS</h3>
+                            <h3>Road Traffic Flow Forecasting in the City of Porto</h3>
                         </div>
-                        <p class="list-desc">INMF orchestration architecture tracking remote tabular Q-Learning control parameters securely.</p>
-                        <div class="commit-counter" data-repo="DAA">🚀 <span>0</span> Commits</div>
+                        <p class="list-desc">End-to-end ML solution for predicting urban traffic congestion levels in the city of Porto, following the CRISP-DM methodology. Achieved a competitive performance that aligns with the top 4 elite positions in generalization capability.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="DAA">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">Reinforcement Learning</span><span class="tag">SNMP Cryptography</span><span class="tag">Fernet Keys</span><span class="tag">Pygame Data</span>
+                        <span class="tag">Data Pipelines</span><span class="tag">Streaming Stacks</span><span class="tag">Distributed Systems</span><span class="tag">Infrastructure</span>
                     </div>
                 </a>
 
@@ -692,22 +706,124 @@
                             <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                             <h3>QoS VNFs</h3>
                         </div>
-                        <p class="list-desc">Modular network virtualization setup deploying components across a custom structured routing core.</p>
-                        <div class="commit-counter" data-repo="TP3-QoSi">🚀 <span>0</span> Commits</div>
+                        <p class="list-desc">Modular QoS architecture using VNFs, including access control, traffic classification, policing, scheduling, and monitoring. All components were deployed across a virtualized network core using IP-based service chaining.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="TP3-QoSi">🚀 <span>0</span> Commits</div>
                     </div>
                     <div>
-                        <span class="tag">NFV Virtualization</span><span class="tag">Distributed Systems</span><span class="tag">Network Core</span><span class="tag">IP Routing</span>
+                        <span class="tag">NFV Virtualization</span><span class="tag">Distributed Systems</span><span class="tag">Network Core</span><span class="tag">IP Chaining</span><span class="tag">Traffic Policing</span>
                     </div>
                 </a>
+
+                <a href="https://github.com/eduardaspereira/TugaCompiler" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <img src="assets/compi.png" alt="Tuga Compiler" class="project-img">
+                        </div>
+                        <div class="meta">2025</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Tuga Compiler</h3>
+                        </div>
+                        <p class="list-desc">Constructed a custom language parser pipeline delivering robust operator precedence mapping into targeted custom bytecode VMs.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="TugaCompiler">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">Java Stacks</span><span class="tag">ANTLR Parsing</span><span class="tag">Operator Precedence</span><span class="tag">Code Generation</span><span class="tag">Lexical Analysis</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/eduardaspereira/Piano-Simulator" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[3D Interactive Key Mesh]</div>
+                        </div>
+                        <div class="meta">2025</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>3D Piano Simulator</h3>
+                        </div>
+                        <p class="list-desc">Interactive Blender simulator handling sophisticated runtime script logic paths for real-time key transformations and sound indexing.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="Piano-Simulator">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">Python Scripts</span><span class="tag">Blender 3D Modeling</span><span class="tag">Key Animation</span><span class="tag">Sound Integration</span><span class="tag">Scene Composition</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/eduardaspereira/IA-24_25/tree/main/P4%20neural%20nets%20report" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Neural Network Mesh]</div>
+                        </div>
+                        <div class="meta">2025</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Digit Classifier AI</h3>
+                        </div>
+                        <p class="list-desc">Feedforward binary neural network analyzing 20x20 matrices using early stopping metrics and early split constraints.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="IA-24_25">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">Python Architecture</span><span class="tag">Neural Networks</span><span class="tag">Supervised Learning</span><span class="tag">Pixel Normalization</span><span class="tag">MSE Optimization</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/eduardaspereira/OOP_Space-Invaders" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[OOP Modularity Flow]</div>
+                        </div>
+                        <div class="meta">2024</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Space Invaders OOP</h3>
+                        </div>
+                        <p class="list-desc">Engineered enemy path state machines and responsive vector input threading using complex Java structures.</p>
+                        <div class="commit-counter" data-owner="eduardaspereira" data-repo="OOP_Space-Invaders">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">Java Application</span><span class="tag">Swing Desktop GUI</span><span class="tag">Object Modularity</span><span class="tag">AI Behavior Patrolling</span><span class="tag">Keyboard Handling</span>
+                    </div>
+                </a>
+
+                <a href="https://github.com/hugoConceicaoPT/SnakeOOPS" target="_blank" class="card mid-scroll-trigger">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[Polygonal Boundary Matrix]</div>
+                        </div>
+                        <div class="meta">2024</div>
+                        <div class="card-title-container">
+                            <svg class="hover-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                            <h3>Snake Game FX</h3>
+                        </div>
+                        <p class="list-desc">Structured sandbox collision detection algorithms rendering shifting, spinning polygonal maps.</p>
+                        <div class="commit-counter" data-owner="hugoConceicaoPT" data-repo="SnakeOOPS">🚀 <span>0</span> Commits</div>
+                    </div>
+                    <div>
+                        <span class="tag">JavaFX Engine</span><span class="tag">Polygonal Meshes</span><span class="tag">Collision Detection</span><span class="tag">OOP Patterns</span><span class="tag">Progression Design</span>
+                    </div>
+                </a>
+
+                <div class="card mid-scroll-trigger" style="cursor: default;">
+                    <div>
+                        <div class="project-img-wrapper">
+                            <div style="position: absolute; inset:0; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size:0.8rem;">[UI/UX Flow Layout]</div>
+                        </div>
+                        <div class="meta">2024</div>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; margin-bottom: 5px;">Campus Hub Prototyping</h3>
+                        <p class="list-desc">Designed clear flow charts mapping complex, user-centric notification arrays and calendar event linkages.</p>
+                    </div>
+                    <div>
+                        <span class="tag">Figma Engineering</span><span class="tag">Wireframing Flows</span><span class="tag">UI Mockups Layout</span><span class="tag">User-Centric Design</span>
+                    </div>
+                </div>
 
             </div>
         </section>
 
     </main>
 
-    <footer>
-        <p>© 2026 Eduarda Pereira // <a href="https://github.com/eduardaspereira" target="_blank">GitHub Central Hub</a></p>
-    </footer>
+    <footer>© 2026 Eduarda Pereira</footer>
 
     <script>
         function toggleTheme() {
@@ -719,14 +835,13 @@
             }
         }
 
-        // 1. Progressively Whiten Text on Scroll Sequence
+        // Text color step whitening engine on scroll
         window.addEventListener('scroll', () => {
             const nodes = document.querySelectorAll('.text-fade-node');
             const windowHeight = window.innerHeight;
 
             nodes.forEach(node => {
                 const rect = node.getBoundingClientRect();
-                // If text node passes middle height boundary, make it full color
                 if (rect.top < windowHeight * 0.65) {
                     node.classList.add('active');
                 } else {
@@ -735,20 +850,24 @@
             });
         });
 
-        // 2. Strict Mid-Screen Intersection Observer for Card Entry Sliding Actions
+        // Rigid Mid-Screen Observer triggering slide entrances and firing official live GitHub commit queries
         const centerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active-mid');
-                    // Initiate counter logic whenever a project card arrives safely in the focus viewport
-                    const counter = entry.target.querySelector('.commit-counter span');
-                    if (counter && counter.textContent === "0") {
-                        triggerAnimateCounter(counter);
+                    
+                    const counterBox = entry.target.querySelector('.commit-counter');
+                    if (counterBox && !counterBox.classList.contains('fetched')) {
+                        counterBox.classList.add('fetched');
+                        const targetSpan = counterBox.querySelector('span');
+                        const owner = counterBox.getAttribute('data-owner');
+                        const repo = counterBox.getAttribute('data-repo');
+                        
+                        fetchCommitCount(owner, repo, targetSpan);
                     }
                 }
             });
         }, {
-            // High strict threshold margins focusing entry actions right towards center screen zones
             rootMargin: "-25% 0px -25% 0px",
             threshold: 0.1
         });
@@ -757,24 +876,46 @@
             centerObserver.observe(el);
         });
 
-        // 3. Simulated Increasing Commit Engine Going Up live
-        function triggerAnimateCounter(element) {
+        // Live GitHub API pagination extractor tracking HEAD 'Link' headers
+        async function fetchCommitCount(owner, repo, outputElement) {
+            const targetUrl = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`;
+            
+            try {
+                const response = await fetch(targetUrl, { method: 'HEAD' });
+                if (!response.ok) throw new Error();
+                
+                const linkHeader = response.headers.get('Link');
+                if (linkHeader) {
+                    // Extracting the final pagination index pointing to the last page (total commit integer)
+                    const lastPageMatch = linkHeader.match(/&page=(\d+)>;\s*rel="last"/);
+                    if (lastPageMatch && lastPageMatch[1]) {
+                        animateCounterScroll(parseInt(lastPageMatch[1]), outputElement);
+                        return;
+                    }
+                }
+                // Fallback default calculation if repository contains single or hidden commit boundaries
+                animateCounterScroll(1, outputElement);
+            } catch (err) {
+                // Production safe structural fallback display mode
+                outputElement.textContent = "Active";
+            }
+        }
+
+        function animateCounterScroll(target, element) {
             let current = 0;
-            // Generate distinct mock target limits matching engineering depth scales
-            const target = Math.floor(Math.random() * 45) + 20; 
-            const duration = 1500; 
+            const duration = 1000;
             const increment = target / (duration / 16);
 
-            function updateCount() {
+            function run() {
                 current += increment;
                 if (current < target) {
                     element.textContent = Math.floor(current);
-                    requestAnimationFrame(updateCount);
+                    requestAnimationFrame(run);
                 } else {
                     element.textContent = target;
                 }
             }
-            updateCount();
+            run();
         }
     </script>
 </body>
